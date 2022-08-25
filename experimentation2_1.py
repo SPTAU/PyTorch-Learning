@@ -5,57 +5,57 @@ Author: SPTAU
 import matplotlib.pyplot as plt
 import numpy as np
 
-input_data = [1.0, 2.0, 3.0]
-output_data = [2.0, 4.0, 6.0]
-weight = 0
-bias = 0
+x_data = [1.0, 2.0, 3.0]
+y_data = [2.0, 4.0, 6.0]
+w = 0
+b = 0
 
 
-def forward(input):
+def forward(x):
     """forward
 
-    Returns: input * w + b
+    Returns: x * w + b
     """
 
-    return input * weight + bias
+    return x * w + b
 
 
-def loss(input, output):
+def loss(x, y):
     """loss
 
-    Returns: (output_pred - output) * (output_pred - output)
+    Returns: (y_pred - y) * (y_pred - y)
     """
-    output_pred = forward(input)
-    return (output_pred - output) * (output_pred - output)
+    y_pred = forward(x)
+    return (y_pred - y) * (y_pred - y)
 
 
-weight_list = []
+w_list = []
 mse_list = []
 MSE = []
-for weight in np.arange(-4.0, 4.1, 0.1):
+for w in np.arange(-4.0, 4.1, 0.1):
     mse_list = []
-    bias_list = []
-    for bias in np.arange(-4.0, 4.1, 0.1):
+    b_list = []
+    for b in np.arange(-4.0, 4.1, 0.1):
         # print("w=", weight)
         # print("b=", bias)
         loss_sum = 0
-        for input_val, output_val in zip(input_data, output_data):
-            output_pred_val = forward(input_val)
-            loss_val = loss(input_val, output_val)
+        for x_val, y_val in zip(x_data, y_data):
+            y_pred_val = forward(x_val)
+            loss_val = loss(x_val, y_val)
             loss_sum += loss_val
-            print("\t", input_val, output_val, output_pred_val, loss_val)
-        mse = loss_sum / len(input_data)
+            print("\t", x_val, y_val, y_pred_val, loss_val)
+        mse = loss_sum / len(x_data)
         # print("MSE=", mse)
-        bias_list.append(bias)
+        b_list.append(b)
         mse_list.append(mse)
-    weight_list.append(weight)
+    w_list.append(w)
     MSE.append(mse_list)
 
 MSE = np.array(MSE)
 fig = plt.figure()
 ax = fig.add_subplot(projection="3d")
-Weight, Bias = np.meshgrid(weight_list, bias_list)
-ax.plot_surface(Weight, Bias, MSE)
+W, B = np.meshgrid(w_list, b_list)
+ax.plot_surface(W, B, MSE)
 ax.set_xlabel("Weight")
 ax.set_ylabel("Bias")
 ax.set_zlabel("MSE")
