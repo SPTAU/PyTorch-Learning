@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
         print("Training process has finished. Saving trained model.")
 
-        save_path = f"./model-fold-{fold}.pth"
+        save_path = f"./OGPCC Weight/model-fold-{fold}.pth"
         torch.save(model.state_dict(), save_path)
 
         print("Starting testing")
