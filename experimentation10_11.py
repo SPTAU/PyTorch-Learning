@@ -19,7 +19,7 @@ train_dataset = datasets.MNIST(root="./dataset/mnist/", train=True, download=Tru
 train_loader = DataLoader(train_dataset, shuffle=True, batch_size=batch_size)
 
 test_dataset = datasets.MNIST(root="./dataset/mnist/", train=False, download=True, transform=transform)
-test_loader = DataLoader(test_dataset, shuffle=False, atch_size=batch_size)
+test_loader = DataLoader(test_dataset, shuffle=False, batch_size=batch_size)
 
 
 class Net(torch.nn.Module):

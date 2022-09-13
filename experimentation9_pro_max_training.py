@@ -87,7 +87,6 @@ if __name__ == "__main__":
         for epoch in range(0, num_epochs):
 
             current_loss = 0.0
-
             correct, total = 0, 0
             epoch_loss_list = []
             epoch_acc_list = []
